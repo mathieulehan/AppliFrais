@@ -3,7 +3,7 @@
 ?>
 
 <div id="contenu">
-	<h2>Renseigner ma fiche de frais dhgu mois <?php echo $numMois."-".$numAnnee; ?></h2>
+	<h2>Modifier la fiche de frais du: <?php echo $numMois."-".$numAnnee; ?></h2>
 					
 	<?php if(!empty($notify)) echo '<p id="notify" >'.$notify.'</p>';?>
 	 
