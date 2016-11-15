@@ -16,7 +16,7 @@ class C_comptable extends CI_Controller {
 	*/
 	public function _remap($action, $params = array())
 	{
-		// chargement du modèle d'authentification
+		// chargement du modèle d'authentification OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 		$this->load->model('authentif');
 		
 		// contrôle de la bonne authentification de l'utilisateur
@@ -87,7 +87,7 @@ class C_comptable extends CI_Controller {
 
 				$this->a_comptable->modFiche($idComptable, $mois);
 			}
-			elseif ($action == 'signeFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
+			elseif ($action == 'refusFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
 				$this->load->model('a_comptable');
 
@@ -95,11 +95,11 @@ class C_comptable extends CI_Controller {
 				// en second paramètre
 				$mois = $params[0];
 				// obtention de l'id utilisateur courant et du mois concerné
-				$idComptable = $this->session->userdata('idUser');
-				$this->a_comptable->signeFiche($idComptable, $mois);
+				$idVisiteur = $this->session->userdata('idUser');
+				$this->a_comptable->refusFiche($idVisiteur, $mois);
 
 				// ... et on revient à mesFiches
-				$this->a_comptable->mesFiches($idComptable, "La fiche $mois a été signée. <br/>Pensez à envoyer vos justificatifs afin qu'elle soit traitée par le service comptable rapidement.");
+				$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été refusée. <br/>");
 			}
 			elseif ($action == 'majForfait') // majFraisForfait demandé : on active la fonction majFraisForfait du modèle comptable ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs

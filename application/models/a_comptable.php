@@ -50,7 +50,7 @@ class A_comptable extends CI_Model {
 		$idComptable = $this->session->userdata('idUser');
 
 		$data['notify'] = $message;
-		$data['mesFiches'] = $this->dataAccess->getFiches($idComptable);		
+		$data['mesFiches'] = $this->dataAccess->getFichesAll();		
 		$this->templates->load('t_comptable', 'v_comptMesFiches', $data);	
 	}	
 
@@ -79,7 +79,7 @@ class A_comptable extends CI_Model {
 	 * @param $mois : le mois de la fiche à modifier 
 	 * @param $message : message facultatif destiné à notifier l'utilisateur du résultat d'une action précédemment exécutée
 	*/
-	public function modFiche($idComptable, $mois, $message=null)
+	public function valideFiche($idComptable, $mois, $message=null)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 
 		$data['notify'] = $message;
@@ -97,11 +97,23 @@ class A_comptable extends CI_Model {
 	 * @param $idComptable : l'id du comptable 
 	 * @param $mois : le mois de la fiche à signer
 	*/
-	public function signeFiche($idComptable, $mois)
+	public function modFiche($idVisiteur, $mois, $message=null)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	
+	$data['notify'] = $message;
+	$data['numAnnee'] = substr( $mois,0,4);
+	$data['numMois'] = substr( $mois,4,2);
+	$data['lesFraisHorsForfait'] = $this->dataAccess->getLesLignesHorsForfait($idVisiteur,$mois);
+	$data['lesFraisForfait'] = $this->dataAccess->getLesLignesForfait($idVisiteur,$mois);
+	
+	$this->templates->load('t_comptable', 'v_comptModListeFrais', $data);
+	}
+	
+	public function refusFiche($idVisiteur, $mois)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 		// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
 
-	    $this->dataAccess->signeFiche($idComptable, $mois);
+	    $this->dataAccess->refusFiche($idVisiteur, $mois);
 	}
 
 	/**

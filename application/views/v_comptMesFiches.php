@@ -21,13 +21,17 @@
 		<?php    
 			foreach( $mesFiches as $uneFiche) 
 			{
+				$refusLink = '';
+				$valideLink = '';
 				$modLink = '';
-				$signeLink = '';
 
-				if ($uneFiche['id'] == 'CR') {
+				if ($uneFiche['id'] == 'CL') {
+					$refusLink = anchor('c_comptable/refusFiche/'.$uneFiche['mois'], 'refuser',  'title="Refuser la fiche"');
+					$valideLink = anchor('c_comptable/valideFiche/'.$uneFiche['mois'], 'valider',  'title="Valider la fiche"  onclick="return confirm(\'Voulez-vous vraiment valider cette fiche ?\');"');
 					$modLink = anchor('c_comptable/modFiche/'.$uneFiche['mois'], 'modifier',  'title="Modifier la fiche"');
-					$signeLink = anchor('c_comptable/signeFiche/'.$uneFiche['mois'], 'signer',  'title="Signer la fiche"  onclick="return confirm(\'Voulez-vous vraiment signer cette fiche ?\');"');
-				}
+				
+				
+
 				
 				echo 
 				'<tr>
@@ -35,9 +39,12 @@
 					<td class="libelle">'.$uneFiche['libelle'].'</td>
 					<td class="montant">'.$uneFiche['montantValide'].'</td>
 					<td class="date">'.$uneFiche['dateModif'].'</td>
+					<td class="action">'.$refusLink.'</td>
+					<td class="action">'.$valideLink.'</td>
 					<td class="action">'.$modLink.'</td>
-					<td class="action">'.$signeLink.'</td>
+							
 				</tr>';
+			}
 			}
 		?>	  
 		</tbody>

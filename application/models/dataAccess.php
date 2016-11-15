@@ -202,6 +202,14 @@ class DataAccess extends CI_Model {
 				$this->majEtatFicheFrais($idVisiteur, $mois,'CL');
 		}
 	}
+	
+	public function refusFiche($idVisiteur,$mois){
+		//met à 'CR' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='CL'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'CR');
+		}
+	}
 
 	/**
 	 * Crée un nouveau frais hors forfait pour un visiteur un mois donné
@@ -302,6 +310,14 @@ class DataAccess extends CI_Model {
 				from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id 
 				where fichefrais.idvisiteur = '$idVisiteur'
 				order by mois desc";
+		$rs = $this->db->query($req);
+		$lesFiches = $rs->result_array();
+		return $lesFiches;
+	}
+	public function getFichesAll () {
+		$req = "select idVisiteur, mois, montantValide, dateModif, id, libelle
+		from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id
+		order by mois desc";
 		$rs = $this->db->query($req);
 		$lesFiches = $rs->result_array();
 		return $lesFiches;
