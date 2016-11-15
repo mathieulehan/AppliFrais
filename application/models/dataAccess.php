@@ -289,7 +289,7 @@ class DataAccess extends CI_Model {
 	/**
 	 * Modifie l'état et la date de modification d'une fiche de frais
 	 * 
-	 * @param $idVisiteur 
+	 * @param $idVisiteur
 	 * @param $mois sous la forme aaaamm
 	 * @param $etat : le nouvel état de la fiche 
 	 */
