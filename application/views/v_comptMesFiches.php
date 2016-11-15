@@ -10,7 +10,7 @@
 		<thead>
 			<tr>
 				<th >Mois</th>
-				<th >Etat</th>  
+				<th >Visiteurs</th>  
 				<th >Montant</th>  
 				<th >Date modif.</th>  
 				<th  colspan="4">Actions</th>              
@@ -36,7 +36,7 @@
 				echo 
 				'<tr>
 					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['mois'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
-					<td class="libelle">'.$getInfosVisiteur['nom'].'</td>
+					<td class="libelle">'.$uneFiche['nom'].' '.$uneFiche['prenom'].'</td>
 					<td class="montant">'.$uneFiche['montantValide'].'</td>
 					<td class="date">'.$uneFiche['dateModif'].'</td>
 					<td class="action">'.$refusLink.'</td>

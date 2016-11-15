@@ -315,8 +315,9 @@ class DataAccess extends CI_Model {
 		return $lesFiches;
 	}
 	public function getFichesAll () {
-		$req = "select idVisiteur, mois, montantValide, dateModif, id, libelle
-		from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id
+		$req = "select idVisiteur, nom, prenom, mois, montantValide, dateModif, Etat.id, libelle
+		from visiteur, fichefrais inner join Etat on ficheFrais.idEtat = Etat.id
+		where visiteur.id = fichefrais.idVisiteur		
 		order by mois desc";
 		$rs = $this->db->query($req);
 		$lesFiches = $rs->result_array();
