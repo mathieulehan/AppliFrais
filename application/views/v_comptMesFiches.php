@@ -36,7 +36,7 @@
 				echo 
 				'<tr>
 					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['mois'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
-					<td class="libelle">'.$uneFiche['libelle'].'</td>
+					<td class="libelle">'.$getInfosVisiteur['nom'].'</td>
 					<td class="montant">'.$uneFiche['montantValide'].'</td>
 					<td class="date">'.$uneFiche['dateModif'].'</td>
 					<td class="action">'.$refusLink.'</td>
