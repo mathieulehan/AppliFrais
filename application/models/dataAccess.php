@@ -207,7 +207,14 @@ class DataAccess extends CI_Model {
 		//met à 'CR' son champs idEtat
 		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
 		if($laFiche['idEtat']=='CL'){
-			$this->majEtatFicheFrais($idVisiteur, $mois,'CR');
+			$this->majEtatFicheFrais($idVisiteur, $mois,'RE');
+		}
+	}
+	public function validefiche($idVisiteur,$mois){
+		//met à 'VA' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='CL'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'VA');
 		}
 	}
 

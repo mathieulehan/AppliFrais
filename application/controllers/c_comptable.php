@@ -47,8 +47,18 @@ class C_comptable extends CI_Controller {
 				// on n'est pas en mode "modification d'une fiche"
 				$this->session->unset_userdata('mois');
 
-				$idComptable = $this->session->userdata('idUser');
-				$this->a_comptable->mesFiches($idComptable);
+				$idVisiteur = $this->session->userdata('idUser');
+				$this->a_comptable->mesFiches($idVisiteur);
+			}
+			elseif ($action == 'suivi')		// mesFiches demandé : on active la fonction mesFiches du modèle comptable
+			{
+				$this->load->model('a_comptable');
+			
+				// on n'est pas en mode "modification d'une fiche"
+				$this->session->unset_userdata('mois');
+			
+				$idVisiteur = $this->session->userdata('idUser');
+				$this->a_comptable->suivi($idVisiteur);
 			}
 			elseif ($action == 'deconnecter')	// deconnecter demandé : on active la fonction deconnecter du modèle authentif
 			{
@@ -67,9 +77,9 @@ class C_comptable extends CI_Controller {
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
-				$idComptable = $this->session->userdata('idUser');
+				$idVisiteur = $this->session->userdata('idUser');
 
-				$this->a_comptable->voirFiche($idComptable, $mois);
+				$this->a_comptable->voirFiche($idVisiteur, $mois);
 			}
 			elseif ($action == 'modFiche')		// modFiche demandé : on active la fonction modFiche du modèle authentif
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -83,9 +93,9 @@ class C_comptable extends CI_Controller {
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
-				$idComptable = $this->session->userdata('idUser');
+				$idVisiteur = $this->session->userdata('idUser');
 
-				$this->a_comptable->modFiche($idComptable, $mois);
+				$this->a_comptable->modFiche($idVisiteur, $mois);
 			}
 			elseif ($action == 'refusFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -101,23 +111,37 @@ class C_comptable extends CI_Controller {
 				// ... et on revient à mesFiches
 				$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été refusée. <br/>");
 			}
+			elseif ($action == 'valideFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
+			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
+			$this->load->model('a_comptable');
+			
+			// obtention du mois de la fiche à signer qui doit avoir été transmis
+			// en second paramètre
+			$mois = $params[0];
+			// obtention de l'id utilisateur courant et du mois concerné
+			$idVisiteur = $this->session->userdata('idUser');
+			$this->a_comptable->valideFiche($idVisiteur, $mois);
+			
+			// ... et on revient à mesFiches
+			$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été validée. <br/>");
+			}
 			elseif ($action == 'majForfait') // majFraisForfait demandé : on active la fonction majFraisForfait du modèle comptable ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
 				
 				$this->load->model('a_comptable');
 
-				// obtention de l'id du comptable et du mois concerné
-				$idComptable = $this->session->userdata('idUser');
+				// obtention de l'id du visiteur et du mois concerné
+				$idVisiteur = $this->session->userdata('idUser');
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées
 				$lesFrais = $this->input->post('lesFrais');
 
-				$this->a_comptable->majForfait($idComptable, $mois, $lesFrais);
+				$this->a_comptable->majForfait($idVisiteur, $mois, $lesFrais);
 
 				// ... et on revient en modification de la fiche
-				$this->a_comptable->modFiche($idComptable, $mois, 'Modification(s) des éléments forfaitisés enregistrée(s) ...');
+				$this->a_comptable->modFiche($idVisiteur, $mois, 'Modification(s) des éléments forfaitisés enregistrée(s) ...');
 			}
 			elseif ($action == 'ajouteFrais') // ajouteLigneFrais demandé : on active la fonction ajouteLigneFrais du modèle comptable ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
@@ -125,8 +149,8 @@ class C_comptable extends CI_Controller {
 				
 				$this->load->model('a_comptable');
 
-				// obtention de l'id du comptable et du mois concerné
-				$idComptable = $this->session->userdata('idUser');
+				// obtention de l'id du visiteur et du mois concerné
+				$idVisiteur = $this->session->userdata('idUser');
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées
@@ -136,10 +160,10 @@ class C_comptable extends CI_Controller {
 					'montant' => $this->input->post('montant')
 				);
 
-				$this->a_comptable->ajouteFrais($idComptable, $mois, $uneLigne);
+				$this->a_comptable->ajouteFrais($idVisiteur, $mois, $uneLigne);
 
 				// ... et on revient en modification de la fiche
-				$this->a_comptable->modFiche($idComptable, $mois, 'Ligne "Hors forfait" ajoutée ...');				
+				$this->a_comptable->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" ajoutée ...');				
 			}
 			elseif ($action == 'supprFrais') // suppprLigneFrais demandé : on active la fonction suppprLigneFrais du modèle comptable ...
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -147,16 +171,16 @@ class C_comptable extends CI_Controller {
 			
 				$this->load->model('a_comptable');
 
-				// obtention de l'id du comptable et du mois concerné
-				$idComptable = $this->session->userdata('idUser');
+				// obtention de l'id du visiteru et du mois concerné
+				$idVisiteur = $this->session->userdata('idUser');
 				$mois = $this->session->userdata('mois');
 				
 				// Quel est l'id de la ligne à supprimer : doit avoir été transmis en second paramètre
 				$idLigneFrais = $params[0];
-				$this->a_comptable->supprLigneFrais($idComptable, $mois, $idLigneFrais);
+				$this->a_comptable->supprLigneFrais($idVisiteur, $mois, $idLigneFrais);
 
 				// ... et on revient en modification de la fiche
-				$this->a_comptable->modFiche($idComptable, $mois, 'Ligne "Hors forfait" supprimée ...');				
+				$this->a_comptable->modFiche($idVisiteur, $mois, 'Ligne "Hors forfait" supprimée ...');				
 			}
 			else								// dans tous les autres cas, on envoie la vue par défaut pour l'erreur 404
 			{
