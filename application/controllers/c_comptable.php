@@ -119,7 +119,7 @@ class C_comptable extends CI_Controller {
 			// en second paramètre
 			$mois = $params[0];
 			// obtention de l'id utilisateur courant et du mois concerné
-			$idVisiteur = $this->session->userdata('idUser');
+			$idVisiteur = $params[1];
 			$this->a_comptable->valideFiche($idVisiteur, $mois);
 			
 			// ... et on revient à mesFiches
