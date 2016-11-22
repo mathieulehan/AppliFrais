@@ -217,6 +217,13 @@ class DataAccess extends CI_Model {
 			$this->majEtatFicheFrais($idVisiteur, $mois,'VA');
 		}
 	}
+	public function paiementfiche($idVisiteur,$mois){
+		//met à 'MP' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='VA	'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'MP');
+		}
+	}
 
 	/**
 	 * Crée un nouveau frais hors forfait pour un visiteur un mois donné
@@ -255,7 +262,7 @@ class DataAccess extends CI_Model {
 	 * @return un tableau associatif de clé un mois -aaaamm- et de valeurs l'année et le mois correspondant 
 	*/
 	public function getLesMoisDisponibles($idVisiteur){
-		$req = "select fichefrais.mois as mois 
+		$req = "select fichefrais.mois as mois, idVisiteur
 				from  fichefrais 
 				where fichefrais.idvisiteur ='$idVisiteur' 
 				order by fichefrais.mois desc ";
@@ -271,9 +278,12 @@ class DataAccess extends CI_Model {
 				"numAnnee"  => "$numAnnee",
 				"numMois"  => "$numMois"
 			 );
+			$visiteurID = idVisiteur;
+			
 			$laLigne = $rs->next_row('array'); 		
 		}
 		return $lesMois;
+		return $visiteurID;
 	}
 
 	/**
@@ -357,7 +367,7 @@ class DataAccess extends CI_Model {
 		$laLigne = $rs->first_row('array');
 		$totalF = $laLigne['totalF'];
 
-		return $totalHF + $totalF;
+		return 0 + $totalF;
 	}
 
 	/**

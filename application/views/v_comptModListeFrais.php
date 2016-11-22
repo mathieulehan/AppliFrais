@@ -7,7 +7,7 @@
 					
 	<?php if(!empty($notify)) echo '<p id="notify" >'.$notify.'</p>';?>
 	 
-	<form method="post"  action="<?php echo base_url("c_comptable/majForfait");?>">
+	<form method="post"  action="<?php echo base_url("c_comptable/majForfait/$numAnnee$numMois/$visiteurID");?>">
 		<div class="corpsForm">
 		  
 			<fieldset>

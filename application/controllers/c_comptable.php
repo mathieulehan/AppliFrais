@@ -93,23 +93,23 @@ class C_comptable extends CI_Controller {
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 
 				$this->a_comptable->modFiche($idVisiteur, $mois);
 			}
 			elseif ($action == 'refusFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
-			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
-				$this->load->model('a_comptable');
-
-				// obtention du mois de la fiche à signer qui doit avoir été transmis
-				// en second paramètre
-				$mois = $params[0];
-				// obtention de l'id utilisateur courant et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
-				$this->a_comptable->refusFiche($idVisiteur, $mois);
-
-				// ... et on revient à mesFiches
-				$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été refusée. <br/>");
+					{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
+			$this->load->model('a_comptable');
+			
+			// obtention du mois de la fiche à signer qui doit avoir été transmis
+			// en second paramètre
+			$mois = $params[0];
+			// obtention de l'id utilisateur courant et du mois concerné
+			$idVisiteur = $params[1];
+			$this->a_comptable->refusFiche($idVisiteur, $mois);
+			
+			// ... et on revient à mesFiches
+			$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été refusée. <br/>");
 			}
 			elseif ($action == 'valideFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
 			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
@@ -125,6 +125,22 @@ class C_comptable extends CI_Controller {
 			// ... et on revient à mesFiches
 			$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été validée. <br/>");
 			}
+			
+			elseif ($action == 'paiementFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
+			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
+			$this->load->model('a_comptable');
+				
+			// obtention du mois de la fiche à signer qui doit avoir été transmis
+			// en second paramètre
+			$mois = $params[0];
+			// obtention de l'id utilisateur courant et du mois concerné
+			$idVisiteur = $params[1];
+			$this->a_comptable->paiementFiche($idVisiteur, $mois);
+				
+			// ... et on revient à mesFiches
+			$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été mise en paiement. <br/>");
+			}
+			
 			elseif ($action == 'majForfait') // majFraisForfait demandé : on active la fonction majFraisForfait du modèle comptable ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche
@@ -132,8 +148,9 @@ class C_comptable extends CI_Controller {
 				$this->load->model('a_comptable');
 
 				// obtention de l'id du visiteur et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
-				$mois = $this->session->userdata('mois');
+				$mois = $params[0];
+				$idVisiteur = $params[1];
+		
 
 				// obtention des données postées
 				$lesFrais = $this->input->post('lesFrais');
@@ -143,6 +160,7 @@ class C_comptable extends CI_Controller {
 				// ... et on revient en modification de la fiche
 				$this->a_comptable->modFiche($idVisiteur, $mois, 'Modification(s) des éléments forfaitisés enregistrée(s) ...');
 			}
+			
 			elseif ($action == 'ajouteFrais') // ajouteLigneFrais demandé : on active la fonction ajouteLigneFrais du modèle comptable ...
 			{	// TODO : conrôler que l'obtention des données postées ne rend pas d'erreurs
 				// TODO : dans la dynamique de l'application, contrôler que l'on vient bien de modFiche

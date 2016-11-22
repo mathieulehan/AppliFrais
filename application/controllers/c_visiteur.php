@@ -47,7 +47,7 @@ class C_visiteur extends CI_Controller {
 				// on n'est pas en mode "modification d'une fiche"
 				$this->session->unset_userdata('mois');
 
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 				$this->a_visiteur->mesFiches($idVisiteur);
 			}
 			elseif ($action == 'deconnecter')	// deconnecter demandé : on active la fonction deconnecter du modèle authentif
@@ -67,7 +67,7 @@ class C_visiteur extends CI_Controller {
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 
 				$this->a_visiteur->voirFiche($idVisiteur, $mois);
 			}
@@ -83,7 +83,7 @@ class C_visiteur extends CI_Controller {
 				// on mémorise le mois de la fiche en cours de modification
 				$this->session->set_userdata('mois', $mois);
 				// obtention de l'id utilisateur courant
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 
 				$this->a_visiteur->modFiche($idVisiteur, $mois);
 			}
@@ -95,7 +95,7 @@ class C_visiteur extends CI_Controller {
 				// en second paramètre
 				$mois = $params[0];
 				// obtention de l'id utilisateur courant et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 				$this->a_visiteur->signeFiche($idVisiteur, $mois);
 
 				// ... et on revient à mesFiches
@@ -108,7 +108,7 @@ class C_visiteur extends CI_Controller {
 				$this->load->model('a_visiteur');
 
 				// obtention de l'id du visiteur et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées
@@ -126,7 +126,7 @@ class C_visiteur extends CI_Controller {
 				$this->load->model('a_visiteur');
 
 				// obtention de l'id du visiteur et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 				$mois = $this->session->userdata('mois');
 
 				// obtention des données postées
@@ -148,7 +148,7 @@ class C_visiteur extends CI_Controller {
 				$this->load->model('a_visiteur');
 
 				// obtention de l'id du visiteur et du mois concerné
-				$idVisiteur = $this->session->userdata('idUser');
+				$idVisiteur = $params[1];
 				$mois = $this->session->userdata('mois');
 				
 				// Quel est l'id de la ligne à supprimer : doit avoir été transmis en second paramètre
