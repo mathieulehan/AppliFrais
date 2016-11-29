@@ -96,6 +96,13 @@ class A_comptable extends CI_Model {
 	$this->dataAccess->paiementFiche($idVisiteur, $mois);
 	}
 	
+	public function rembourseFiche($idVisiteur, $mois)
+	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
+	// TODO : intégrer une fonctionnalité d'impression PDF de la fiche
+	
+	$this->dataAccess->rembourseFiche($idVisiteur, $mois);
+	}
+	
 	public function valideFiche($idVisiteur, $mois)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 		// TODO : intégrer une fonctionnalité d'impression PDF de la fiche

@@ -26,9 +26,8 @@ $this->load->helper('url');
 				$rembourseLink = '';
 
 				if ($uneFiche['id'] == 'VA') {
-					$paiementLink = anchor('c_comptable/paiementFiche/'.$uneFiche['mois'], 'paiement',  'title="Mise en paiement de la fiche"');
+					$paiementLink = anchor('c_comptable/paiementFiche/'.$uneFiche['mois'].'/'. $uneFiche['idVisiteur'], 'paiement' , 'title="Mise en paiement de la fiche"');
 
-				
 				echo 
 				'<tr>
 					<td class="date">'.anchor('c_comptable/voirFiche/'.$uneFiche['mois'], $uneFiche['mois'],  'title="Consulter la fiche"').'</td>
@@ -42,7 +41,7 @@ $this->load->helper('url');
 			}
 			
 			elseif ($uneFiche['id'] == 'MP') {
-				$rembourseLink = anchor('c_comptable/paiementFiche/'.$uneFiche['mois'], 'rembourser',  'title="Rembourser la fiche"');
+				$rembourseLink = anchor('c_comptable/rembourseFiche/'.$uneFiche['mois'].'/'. $uneFiche['idVisiteur'], 'rembourser',  'title="Rembourser la fiche"');
 
 				echo
 				'		

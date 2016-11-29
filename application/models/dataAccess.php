@@ -220,8 +220,15 @@ class DataAccess extends CI_Model {
 	public function paiementfiche($idVisiteur,$mois){
 		//met à 'MP' son champs idEtat
 		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
-		if($laFiche['idEtat']=='VA	'){
+		if($laFiche['idEtat']=='VA'){
 			$this->majEtatFicheFrais($idVisiteur, $mois,'MP');
+		}
+	}
+	public function rembourseFiche($idVisiteur,$mois){
+		//met à 'RB' son champs idEtat
+		$laFiche = $this->getLesInfosFicheFrais($idVisiteur,$mois);
+		if($laFiche['idEtat']=='MP'){
+			$this->majEtatFicheFrais($idVisiteur, $mois,'RB');
 		}
 	}
 

@@ -138,7 +138,22 @@ class C_comptable extends CI_Controller {
 			$this->a_comptable->paiementFiche($idVisiteur, $mois);
 				
 			// ... et on revient à mesFiches
-			$this->a_comptable->mesFiches($idVisiteur, "La fiche $mois a été mise en paiement. <br/>");
+			$this->a_comptable->suivi($idVisiteur, "La fiche $mois a été mise en paiement. <br/>");
+			}
+			
+			elseif ($action == 'rembourseFiche') 	// signeFiche demandé : on active la fonction signeFiche du modèle comptable ...
+			{	// TODO : contrôler la validité du second paramètre (mois de la fiche à modifier)
+			$this->load->model('a_comptable');
+			
+			// obtention du mois de la fiche à signer qui doit avoir été transmis
+			// en second paramètre
+			$mois = $params[0];
+			// obtention de l'id utilisateur courant et du mois concerné
+			$idVisiteur = $params[1];
+			$this->a_comptable->rembourseFiche($idVisiteur, $mois);
+			
+			// ... et on revient à mesFiches
+			$this->a_comptable->suivi($idVisiteur, "La fiche $mois a été remboursée. <br/>");
 			}
 			
 			elseif ($action == 'majForfait') // majFraisForfait demandé : on active la fonction majFraisForfait du modèle comptable ...
