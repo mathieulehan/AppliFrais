@@ -12,7 +12,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<link href="<?php echo $v_path.'/templates/css/styles.css'?>" rel="stylesheet" type="text/css" />
 
-		<script language="JavaScript">
+		<script type="JavaScript">
 			function hideNotify() {
 				document.getElementById("notify").style.display = "none";
 			}
@@ -37,16 +37,8 @@
 					<li>
 						Visiteur :<br/>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
-					</li>
-					<br>
-					<li class="smenu">
 						<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
-					</li>
-					<li class="smenu">
 						<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
-					</li>
-					<br>
-					<li class="smenu">
 						<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
 				</ul>
@@ -56,7 +48,7 @@
 			<?php echo $body; ?>
 
 			<div id="pied">
-				<br>
+				<br/>
 			</div>
 
 		</div>    
