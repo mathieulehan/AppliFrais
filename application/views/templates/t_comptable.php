@@ -12,7 +12,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<link href="<?php echo $v_path.'/templates/css/styles.css'?>" rel="stylesheet" type="text/css" />
 
-		<script language="JavaScript">
+		<script type="JavaScript">
 			function hideNotify() {
 				document.getElementById("notify").style.display = "none";
 			}

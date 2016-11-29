@@ -23,7 +23,6 @@
 			<?php echo $body; ?>
 
 			<div id="pied">
-				<br>
 			</div>
 
 		</div>    
