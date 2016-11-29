@@ -38,18 +38,10 @@
 						Comptable :<br/>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 					</li>
-					<br>
 					<li class="smenu">
 						<?php echo anchor('c_comptable/', 'Accueil', 'title="Page d\'accueil"'); ?>
-					</li>
-					<li class="smenu">
 						<?php echo anchor('c_comptable/mesFiches', 'Mes fiches de frais', 'title="Consultation des fiches de frais"'); ?>
-					</li>
-					<br>
-					<li class="smenu">
 						<?php echo anchor('c_comptable/suivi', 'Suivi', 'title="COnsulattion des fiches suivies"')?>
-					</li>
-					<li class="smenu">
 						<?php echo anchor('c_comptable/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
 				</ul>
@@ -59,7 +51,6 @@
 			<?php echo $body; ?>
 
 			<div id="pied">
-				<br>
 			</div>
 
 		</div>    
