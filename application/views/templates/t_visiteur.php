@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$this->load->helper('url');
 	$v_path = base_url('application/views');
 ?>
@@ -38,14 +38,14 @@
 						Visiteur :<br/>
 						<?php echo $this->session->userdata('prenom')."  ".$this->session->userdata('nom');  ?>
 					</li>
-					<br/>
+					<br>
 					<li class="smenu">
 						<?php echo anchor('c_visiteur/', 'Accueil', 'title="Page d\'accueil"'); ?>
 					</li>
 					<li class="smenu">
 						<?php echo anchor('c_visiteur/mesFiches', 'Mes fiches de frais', 'title="Consultation de mes fiches de frais"'); ?>
 					</li>
-					<br/>
+					<br>
 					<li class="smenu">
 						<?php echo anchor('c_visiteur/deconnecter', 'Se déconnecter', 'title="Déconnexion"'); ?>
 					</li>
@@ -56,7 +56,7 @@
 			<?php echo $body; ?>
 
 			<div id="pied">
-				<br/>
+				<br>
 			</div>
 
 		</div>    

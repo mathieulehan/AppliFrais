@@ -27,7 +27,7 @@ class A_visiteur extends CI_Model {
 		$lesMois = $this->functionsLib->getSixDerniersMois();
 		
 		// obtention de l'id de l'utilisateur mémorisé en session
-		$idVisiteur = $params[1];
+		$idVisiteur = $this->session->userdata('idUser');
 		
 		// contrôle de l'existence des 6 dernières fiches et création si nécessaire
 		foreach ($lesMois as $unMois){
@@ -47,7 +47,7 @@ class A_visiteur extends CI_Model {
 	public function mesFiches ($idVisiteur, $message=null)
 	{	// TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
 	
-		$idVisiteur = $params[1];
+	$idVisiteur = $this->session->userdata('idUser');
 
 		$data['notify'] = $message;
 		$data['mesFiches'] = $this->dataAccess->getFiches($idVisiteur);		

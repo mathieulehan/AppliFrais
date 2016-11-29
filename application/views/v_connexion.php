@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$this->load->helper('url');
 	$path = base_url();
 ?>
@@ -8,7 +8,7 @@
 
 	<?php if (isset($erreur))	echo '<div class ="erreur"><ul><li>'.$erreur.'</li></ul></div>'; ?>
 
-	<form method="POST" action="<?php echo $path.'c_default/connecter';?>">
+	<form method="post" action="<?php echo $path.'c_default/connecter';?>">
 		<p>
 			<label for="login">Login*</label>
 			<input id="login" type="text" name="login"  size="30" maxlength="45"/>

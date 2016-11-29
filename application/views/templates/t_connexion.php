@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$this->load->helper('url');
 	$v_path = base_url('application/views');
 ?>
@@ -23,7 +23,7 @@
 			<?php echo $body; ?>
 
 			<div id="pied">
-				<br/>
+				<br>
 			</div>
 
 		</div>    
