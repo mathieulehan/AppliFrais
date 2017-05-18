@@ -51,9 +51,9 @@ class FunctionsLib extends CI_Model {
 	/**
 	 * retourne, sous la forme d'un tableau, les 6 derniers mois 
 	 * √† partir d'aujourd'hui au format aaaamm, y compris le mois courant
-	 * A noter: compte-tenu du fonctionnement de la m√©thode DateTime::sub,
+	 * A noter: compte-tenu du fonctionnement de la mÈthode DateTime::sub,
 	 * il peut arriver que l'on retrouve 2 fois le m√™me mois parmi
-	 * les 6 mois r√©sultants. On aura, dans ce cas, que 5 mois distincts.
+	 * les 6 mois rÈsultants. On aura, dans ce cas, que 5 mois distincts.
 	 
 	 * @return : un tableau contenant les 6 mois au format aaaamm
 	*/
@@ -87,7 +87,7 @@ class FunctionsLib extends CI_Model {
 	}
 
 	/**
-	 * Indique si un tableau de valeurs est constitu√© d'entiers positifs ou nuls
+	 * Indique si un tableau de valeurs est constituÈ d'entiers positifs ou nuls
 	 
 	 * @param $tabEntiers : le tableau
 	 * @return vrai ou faux
@@ -104,7 +104,7 @@ class FunctionsLib extends CI_Model {
 	}
 	
 	/**
-	 * V√©rifie si une date est inf√©rieure d'un an √† la date actuelle
+	 * VÈrifie si une date est infÈrieure d'un an √† la date actuelle
 	 
 	 * @param $dateTestee 
 	 * @return vrai ou faux
@@ -120,7 +120,7 @@ class FunctionsLib extends CI_Model {
 	}
 	
 	/**
-	 * V√©rifie la validit√© du format d'une date fran√ßaise jj/mm/aaaa 
+	 * VÈrifie la validitÈ du format d'une date fran√ßaise jj/mm/aaaa 
 	 
 	 * @param $date 
 	 * @return vrai ou faux
@@ -146,7 +146,7 @@ class FunctionsLib extends CI_Model {
 	}
 
 	/**
-	 * V√©rifie que le tableau de frais ne contient que des valeurs num√©riques 
+	 * VÈrifie que le tableau de frais ne contient que des valeurs numÈriques 
 	 
 	 * @param $lesFrais 
 	 * @return vrai ou faux

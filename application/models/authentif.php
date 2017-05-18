@@ -9,7 +9,7 @@ class Authentif extends CI_Model {
     }
 
 	 /**
-	 * Teste si un quelconque visiteur est connectÃ©
+	 * Teste si un quelconque visiteur est connecté
 	 * 
 	 * @return vrai ou faux 
 	 */
@@ -26,7 +26,7 @@ class Authentif extends CI_Model {
 	 * @param $prenom
 	 */
 	public function connecter($idUser,$nom,$prenom)
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohÃ©rents avec ceux mÃ©morisÃ©s en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
 
 		$authUser = array(
                    'idUser'  => $idUser,
@@ -38,7 +38,7 @@ class Authentif extends CI_Model {
 	}
 
 	/**
-	 * DÃ©truit la session active et redirige vers le contrÃ´leur par dÃ©faut
+	 * Détruit la session active et redirige vers le contrÃ´leur par défaut
 	 */
 	public function deconnecter()
 	{
@@ -56,20 +56,17 @@ class Authentif extends CI_Model {
 	}
 
 	/**
-	 * VÃ©rifie en base de donnÃ©es si les informations de connexions sont correctes
+	 * Vérifie en base de données si les informations de connexions sont correctes
 	 * 
 	 * @return : renvoie l'id, le nom et le prenom de l'utilisateur dans un tableau s'il est reconnu, sinon un tableau vide.
 	 */
 	public function authentifier ($login, $mdp) 
-	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohÃ©rents avec ceux mÃ©morisÃ©s en session
+	{	// TODO : s'assurer que les paramÃ¨tres reÃ§us sont cohérents avec ceux mémorisés en session
 	
 		$this->load->model('dataAccess');
 
 		$authUser = $this->dataAccess->getInfosVisiteur($login, $mdp);
 
 		return $authUser;
-		
-		$profil = $this->dataAcess->getProfilVisiteur($idProfil);
-		return $profil;
 	}
 }

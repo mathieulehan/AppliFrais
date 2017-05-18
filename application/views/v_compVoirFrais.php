@@ -3,44 +3,25 @@ $this->load->helper ( 'url' );
 ?>
 
 <div id="contenu">
-	<h2>Renseigner ma fiche de frais du mois <?php echo $numMois."-".$numAnnee; ?></h2>
+	<h2>Modifier la fiche de frais du mois <?php echo $numMois."-".$numAnnee; ?></h2>
 
 	<div class="corpsForm">
 
 		<fieldset>
 			<legend>Eléments forfaitisés</legend>
-			<table>
-				<thead>
-					<th></th>
-					<th>Quantité</th>
-					<th>Montant*</th>
-					<th>Total</th>
-				</thead>
-				<tbody>
 			<?php
 			foreach ( $lesFraisForfait as $unFrais ) {
 				$idFrais = $unFrais ['idfrais'];
 				$libelle = $unFrais ['libelle'];
 				$quantite = $unFrais ['quantite'];
-				$montant = $unFrais ['montant'];
 				
-				echo '<tr>
-						<td><label for="' . $idFrais . '">' . $libelle . '</label></td>
-						<td><input onchange="montant(this)" type="text" id="' . $idFrais . '" name="lesFrais[' . $idFrais . ']" size="10" maxlength="5" value="' . $quantite . '" /></td>
-						<td id="montant' . $idFrais . '">' . $montant . '</td>
-						<td id="total' . $idFrais . '"></td>
-					</tr>
+				echo '<p>
+						<label for="' . $idFrais . '">' . $libelle . '</label>
+						<input type="text" id="' . $idFrais . '" name="lesFrais[' . $idFrais . ']" size="10" maxlength="5" value="' . $quantite . '" />
+					</p>
 					';
 			}
 			?>
-<tr>
-						<td></td>
-						<td></td>
-						<td>Total frais forfaitisés</td>
-						<td id="total"></td>
-					</tr>
-				</tbody>
-			</table>
 		</fieldset>
 		<p></p>
 	</div>

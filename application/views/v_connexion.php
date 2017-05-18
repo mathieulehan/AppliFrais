@@ -1,6 +1,6 @@
 <?php
-	$this->load->helper('url');
-	$path = base_url();
+$this->load->helper ( 'url' );
+$path = base_url ();
 ?>
 
 <div id="contenu">
@@ -10,17 +10,28 @@
 
 	<form method="post" action="<?php echo $path.'c_default/connecter';?>">
 		<p>
-			<label for="login">Login*</label>
-			<input id="login" type="text" name="login"  size="30" maxlength="45"/>
+			<label for="login">Login*</label> <input id="login" type="text"
+				name="login" size="30" maxlength="45" />
 		</p>
 		<p>
-			<label for="nom">Mot de passe*</label>
-			<input id="mdp"  type="password"  name="mdp" size="30" maxlength="45"/>
+			<label for="mdp">Mot de passe*</label> <input id="mdp"
+				type="password" name="mdp" size="30" maxlength="45" />
 		</p>
 		<p>
-			<input type="submit" value="Valider" name="valider"/>
-			<input type="reset" value="Annuler" name="annuler"/> 
+			<input type="submit" value="Valider" name="valider" /> <input
+				type="reset" value="Annuler" name="annuler" />
 		</p>
 	</form>
-
+	<p>
+		<a href="http://validator.w3.org/check?uri=referer"><img
+			src="http://www.w3.org/Icons/valid-xhtml10"
+			alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+	</p>
+	<p>
+		<a href="http://jigsaw.w3.org/css-validator/check/referer"> <img
+			style="border: 0; width: 88px; height: 31px"
+			src="http://jigsaw.w3.org/css-validator/images/vcss"
+			alt="CSS Valide !" />
+		</a>
+	</p>
 </div>
