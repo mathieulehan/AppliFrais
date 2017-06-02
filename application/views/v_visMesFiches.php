@@ -13,6 +13,7 @@ $this->load->helper ( 'url' );
 				<th>Etat</th>
 				<th>Montant</th>
 				<th>Date modif.</th>
+				<th>Commentaire</th>
 				<th colspan="4">Actions</th>
 			</tr>
 		</thead>
@@ -33,6 +34,7 @@ $this->load->helper ( 'url' );
 					<td class="libelle">' . $uneFiche ['libelle'] . '</td>
 					<td class="montant">' . $uneFiche ['montantValide'] . '</td>
 					<td class="date">' . $uneFiche ['dateModif'] . '</td>
+					<td class="commentaire">' . $uneFiche ['motifRefus'] . '</td>
 					<td class="action">' . $modLink . '</td>
 					<td class="action">' . $signeLink . '</td>
 				</tr>';

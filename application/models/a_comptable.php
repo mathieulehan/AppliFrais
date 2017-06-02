@@ -151,13 +151,15 @@ class A_comptable extends CI_Model {
     $this->dataAccess->refusFiche($idVisiteur,$mois, $commentaire);
     }
 
-    public function refusFicheCom($idVisiteur, $mois)
+    public function refusFicheCom($idVisiteur, $mois, $commentaire)
     {   // TODO : s'assurer que les paramètres reçus sont cohérents avec ceux mémorisés en session
     // TODO : intégrer une fonctionnalité d'impression PDF de la fiche
 
         $data['mois'] = $mois;
         $data['idVisiteur'] = $idVisiteur;
-    $this->templates->load('t_comptable', 'v_comptRefusFiche',$data);
+        $data['commentaire'] = $commentaire;
+    	$this->templates->load('t_comptable', 'v_comptRefusFiche',$data);
+        $this->dataAccess->refusFiche($idVisiteur,$mois, $commentaire);
     }
 
 	/**

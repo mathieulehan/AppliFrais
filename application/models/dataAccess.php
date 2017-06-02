@@ -234,10 +234,9 @@ class DataAccess extends CI_Model {
 		}
 	}
 	public function refusFiche($idVisiteur,$mois,$commentaire){
-	       //met  à 'RE' son champs idEtat et ajoute le motif
-	       
+	    //met  à 'RE' son champs idEtat et ajoute le motif
 		$laFiche = $this->getLesInfosFicheFrais($idVisiteur, $mois);
-			$this->supprFicheFrais($idVisiteur, $mois, $commentaire);
+		$this->supprFicheFrais($idVisiteur, $mois, $commentaire);
 
 	}
 	/**
@@ -303,11 +302,11 @@ class DataAccess extends CI_Model {
 	 * 
 	 * @param $idVisiteur 
 	 * @param $mois sous la forme aaaamm
-	 * @return un tableau avec des champs de jointure entre une fiche de frais et la ligne d'état 
+	 * @return un tableau avec des champs de jointure entre une fiche de frais et la ligne d'état
 	*/	
 	public function getLesInfosFicheFrais($idVisiteur,$mois){
 		$req = "select ficheFrais.idEtat as idEtat, ficheFrais.dateModif as dateModif, 
-					ficheFrais.nbJustificatifs as nbJustificatifs, ficheFrais.montantValide as montantValide, etat.libelle as libEtat 
+					ficheFrais.nbJustificatifs as nbJustificatifs, ficheFrais.montantValide as montantValide, ficheFrais.motifRefus as motifRefus, etat.libelle as libEtat 
 				from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id 
 				where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		$rs = $this->db->query($req);
@@ -323,8 +322,8 @@ class DataAccess extends CI_Model {
 	 * @param $etat : le nouvel état de la fiche 
 	 */
 	public function majEtatFicheFrais($idVisiteur,$mois,$etat){
-		$req = "update ficheFrais 
-				set idEtat = '$etat', dateModif = now() 
+		$req = "update ficheFrais
+				set idEtat = '$etat', dateModif = now()
 				where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		$this->db->simple_query($req);
 	}
@@ -333,6 +332,7 @@ class DataAccess extends CI_Model {
 		$req = "update ficheFrais
 				set idEtat = 'RE', dateModif = now(), motifRefus = '$commentaire'
 				where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
+		echo $req;
 		$this->db->simple_query($req);
 	}
 
@@ -342,7 +342,7 @@ class DataAccess extends CI_Model {
 	 * @param $idVisiteur 
 	*/
 	public function getFiches ($idVisiteur) {
-		$req = "select idVisiteur, mois, montantValide, dateModif, id, libelle
+		$req = "select idVisiteur, mois, montantValide, dateModif, id, libelle, motifRefus
 				from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id 
 				where fichefrais.idvisiteur = '$idVisiteur'
 				order by mois desc";
@@ -356,7 +356,7 @@ class DataAccess extends CI_Model {
 	 * @param $idVisiteur
 	 */
 	public function getLesFiches ($idVisiteur) {
-		$req = "select idVisiteur, mois, montantValide, dateModif, Etat.id, libelle, nom, visiteur.id as idv
+		$req = "select idVisiteur, mois, montantValide, dateModif, Etat.id, libelle, nom, motifRefus,  visiteur.id as idv
 		from  visiteur, fichefrais inner join Etat on ficheFrais.idEtat = Etat.id
 		where visiteur.id = fichefrais.idVisiteur
 		order by nom asc, mois desc";

@@ -148,11 +148,11 @@ class C_comptable extends CI_Controller {
 			                // en second paramÃ¨tre
 			                // obtention de l'id utilisateur courant et du mois concernÃ©
 
-			                        $idUtilisateur = $this->input->post('idUtilisateur');
+			                        $idVisiteur = $this->input->post('idVisiteur');
 			                        $mois = $this->input->post('mois');
 			                        $commentaire =  $this->input->post('comment');
 
-			                $this->a_comptable->refusFiche($idUtilisateur,$mois,$commentaire);
+			                $this->a_comptable->refusFiche($idVisiteur,$mois,$commentaire);
 							$idVisiteur = $this->session->userdata('idUser');
 			                $this->a_comptable->lesFiches($idVisiteur,"La fiche $mois a été refusée");
 			                // ... et on revient Ã  mesFiches
@@ -160,11 +160,14 @@ class C_comptable extends CI_Controller {
 
 	        elseif ($action == 'refusFicheCom'){
 	            $this->load->model('a_comptable');
-
+				$commentaire =  $this->input->post('comment');
 	            $mois = $params[0];
 	            // obtention de l'id utilisateur courant et du mois concernÃ©
-	            $idVisiteur = $params[1]        ;
-	            $this->a_comptable->refusFicheCom($idVisiteur, $mois);
+	            $idVisiteur = $params[1];
+
+	            $this->a_comptable->refis($idVisiteur, $mois, $commentaire);
+
+	            $this->a_comptable->refusFicheCom($idVisiteur, $mois, $commentaire);
 
 	        }
 
